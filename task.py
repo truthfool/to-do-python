@@ -55,14 +55,16 @@ def add(next_words):
     with open("task.txt","r") as f:
         lines=f.read().splitlines()
     
-    i=0
-    print(lines)
-    for line in lines:
-        print(line[-1])    
+    i,flag=0,0
+    for line in lines:   
         if int(line[-1])<=int(priority):
             i+=1
         else:
-            lines.insert(i, task+" "+str(priority))
+            lines.insert(i, task+str(priority))
+            flag=1
+            break
+    if flag==0:
+        lines.insert(i, task+str(priority))
 
     i=0
     with open("task.txt", "w") as f:
